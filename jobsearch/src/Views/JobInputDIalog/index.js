@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Dialog from "../../Components/Dialog";
 import Textfield from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Dialog from "../../Components/Dialog";
 
 import DialogActions from "@material-ui/core/DialogActions";
 import { startJob } from "../../Saga";

@@ -14,6 +14,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Homepage = lazy(() => import("./Views/Homepage"));
 const Result = lazy(() => import("./Views/Result"));
+const JobDetail = lazy(() => import("./Views/JobDetail"));
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -31,6 +33,8 @@ ReactDOM.render(
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/results"  component={Result} />
+          <Route path="/job_detail"  component={JobDetail} />
+
 
           <Route path="*" component={Homepage} />
         </Switch>

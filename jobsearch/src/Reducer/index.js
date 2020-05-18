@@ -1,4 +1,4 @@
-import { SAVE_JOBS } from "../Saga/index";
+import { SAVE_JOBS , SAVE_JOB_DETAIL} from "../Saga/index";
 
 const initialState = {
   jobs: [
@@ -115,6 +115,12 @@ const reducer = (state = initialState, action) => {
           },
         ],
       };
+
+      case SAVE_JOB_DETAIL:
+        return {
+          ...state,
+          jobDetail : action.jobDetail
+        }
     default:
       return state;
   }

@@ -12,6 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import Navbar from "../../Components/Navbar";
+import { Link } from "react-router-dom";
 
 class Result extends Component {
   constructor(props) {
@@ -24,7 +25,15 @@ class Result extends Component {
       <>
         <Navbar />
         <div style={{ marginRight: "10%", marginLeft: "10%", marginTop: "5%" }}>
-          <div style={{ marginBottom: "3%", fontSize :"2.1em", fontWeight :"bold" }}>Job Results</div>
+          <div
+            style={{
+              marginBottom: "3%",
+              fontSize: "2.1em",
+              fontWeight: "bold",
+            }}
+          >
+            Job Results
+          </div>
           <TableContainer component={Paper}>
             <Table aria-label="simple table">
               <TableHead style={{ background: "grey" }}>
@@ -51,7 +60,20 @@ class Result extends Component {
                     <TableCell align="center">{job.company_url}</TableCell>
                     <TableCell align="center">{job.location}</TableCell>
                     <TableCell align="center">{job.title}</TableCell>
-                    <TableCell align="center"><Button style={{ color: "#fff", background : "rgba(1,81,181,1)"}}>Details</Button></TableCell>
+                    <TableCell align="center">
+                      <Link
+                        to={{ pathname: "/job_detail", state: { id: job.id } }}
+                      >
+                        <Button
+                          style={{
+                            color: "#fff",
+                            background: "rgba(1,81,181,1)",
+                          }}
+                        >
+                          Details
+                        </Button>
+                      </Link>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

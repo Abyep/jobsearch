@@ -15,17 +15,6 @@ class Homepage extends Component {
 
   componentWillReceiveProps(props) {
     if (props.jobs.length !== 0) {
-      // return (
-      //   <Redirect
-      //     to={{
-      //       pathname: `/results`,
-      //       state: {
-      //         jobs: this.props.jobs,
-      //       },
-      //     }}
-      //   />
-      // );
-
       this.setState({
         jobs: props.jobs,
       });
