@@ -57,6 +57,13 @@ class JobDetail extends Component {
     this.setState({ open: false, preview: true });
   };
 
+  handleDone = () => {
+    this.setState({
+      preview
+       :false
+    })
+  }
+
   render() {
     return (
       <>
@@ -124,24 +131,81 @@ class JobDetail extends Component {
         />
 
         {this.state.preview && (
-          <Paper style={{ position :"sticky", top : 20, marginRight: "25%", marginLeft :"25%", height :"20vh", padding : "5%"}}>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+          <Paper
+            style={{
+              position: "sticky",
+              // top: "40vh",
+              marginRight: "30%",
+              marginLeft: "30%",
+              height: "auto",
+              padding: "5%",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+              }}
+            >
               <div>Name</div>
-              <div>{this.state.name}</div>
+              <div> {this.state.name}</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "2%",
+                justifyContent: "space-evenly",
+              }}
+            >
               <div>Email</div>
               <div>{this.state.email}</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "2%",
+                justifyContent: "space-evenly",
+              }}
+            >
               <div>Cover letter</div>
               <div>
                 {this.state.letter.length !== 0 ? (
                   this.state.letter
                 ) : (
-                  <img src={URL.createObjectURL(this.state.file)} />
+                  <img
+                    style={{ height: "100px", width: "100px" }}
+                    src={URL.createObjectURL(this.state.file)}
+                  />
                 )}
               </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "5%",
+                justifyContent: "space-evenly",
+              }}
+            >
+              Application submitted successfully
+            </div>
+            <div align="center">
+              <Button
+              onClick={this.handleDone}
+                style={{
+                  background: "rgba(1,81,181,1)",
+                  color: "#fff",
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "5%",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                Done
+              </Button>
             </div>
           </Paper>
         )}
