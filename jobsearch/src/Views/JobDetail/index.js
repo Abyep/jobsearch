@@ -88,6 +88,7 @@ class JobDetail extends Component {
                 flex: 1,
                 flexDirection: "column",
                 justifyContent: "space-evenly",
+                minHeight:"100vh",
                 height: "auto",
                 padding: "5%",
               }}
