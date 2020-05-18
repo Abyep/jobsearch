@@ -32,7 +32,11 @@ class JobInput extends Component {
   render() {
     return (
       <div>
-        <Dialog open={this.props.open} title={"Search Job"}>
+        <Dialog
+          close={() => this.props.close()}
+          open={this.props.open}
+          title={"Search Job"}
+        >
           <div style={{ marginBottom: "5%" }}>
             Please select a language you want to search jobs for
           </div>

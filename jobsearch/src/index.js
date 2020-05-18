@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const Homepage = lazy(() => import("./Views/Homepage"));
 const Result = lazy(() => import("./Views/Result"));
 const JobDetail = lazy(() => import("./Views/JobDetail"));
-
+const Auth = lazy(() => import("./Views/Auth"));
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,18 +28,27 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <Suspense fallback={<div></div>}>
-        <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/results"  component={Result} />
-          <Route path="/job_detail"  component={JobDetail} />
+    {localStorage.getItem("session") !== "true" ? (
+      <Router>
+        <Suspense fallback={<div></div>}>
+          <Switch>
+            <Route path="/" exact component={Auth} />
+          </Switch>
+        </Suspense>
+      </Router>
+    ) : (
+      <Router>
+        <Suspense fallback={<div></div>}>
+          <Switch>
+            <Route path="/" exact component={Homepage} />
+            <Route path="/results" component={Result} />
+            <Route path="/job_detail" component={JobDetail} />
 
-
-          <Route path="*" component={Homepage} />
-        </Switch>
-      </Suspense>
-    </Router>
+            <Route path="*" component={Homepage} />
+          </Switch>
+        </Suspense>
+      </Router>
+    )}
   </Provider>,
   document.getElementById("root")
 );

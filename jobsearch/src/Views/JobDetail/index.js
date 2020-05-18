@@ -13,11 +13,11 @@ class JobDetail extends Component {
     super(props);
     this.state = {
       open: false,
-      name: "asas",
-      email: "asas",
-      letter: "asas",
+      name: "",
+      email: "",
+      letter: "",
       file: null,
-      preview: true,
+      preview: false,
     };
   }
 
@@ -54,15 +54,26 @@ class JobDetail extends Component {
   };
 
   handleSubmit = () => {
-    this.setState({ open: false, preview: true });
+    if (
+      this.state.name !== "" &&
+      this.state.email !== "" &&
+      (this.state.letter !== "" || this.state.file !== null)
+    ) {
+      this.setState({ open: false, preview: true });
+    }
   };
 
   handleDone = () => {
     this.setState({
-      preview
-       :false
-    })
-  }
+      preview: false,
+    });
+  };
+
+  handleCloseApplyBox = () => {
+    this.setState({
+      open: false,
+    });
+  };
 
   render() {
     return (
@@ -70,21 +81,54 @@ class JobDetail extends Component {
         <Navbar />
         <div style={{ marginRight: "10%", marginLeft: "10%" }}>
           {this.state.job && (
-            <Paper>
-              <div>{this.state.job.title}</div>
-              <div>{this.state.job.type}</div>
+            <Paper
+              style={{
+                marginTop: "5%",
+                display: "flex",
+                flex: 1,
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "80vh",
+                padding: "5%",
+              }}
+            >
+              <div style={{ fontWeight: "bold", fontSize: "2em" }}>
+                {this.state.job.title}
+              </div>
+              <div style={{ fontWeight: "bold", fontSize: "1.2em" }}>
+                {this.state.job.type}
+              </div>
 
-              <div>{this.state.job.company}</div>
-              <div>{this.state.job.location}</div>
-              <Button onClick={this.handleApply}>Apply</Button>
+              <div style={{ fontWeight: "bold", fontSize: "1.5em" }}>
+                {this.state.job.company}
+              </div>
+              <div style={{ fontWeight: "lighter", lineHeight: "20px" }}>
+                {this.state.job.description}
+              </div>
+              <div>Location : {this.state.job.location}</div>
+              <Button
+                style={{
+                  width: "150px",
+                  background: "rgba(1,81,181,1)",
+                  color: "#fff",
+                }}
+                onClick={this.handleApply}
+              >
+                Apply
+              </Button>
             </Paper>
           )}
         </div>
-        <Dialog open={this.state.open} title={"Apply Job"}>
+        <Dialog
+          close={this.handleCloseApplyBox}
+          open={this.state.open}
+          title={"Apply Job"}
+        >
           <div style={{ marginBottom: "5%" }}>
             Please enter the following details.
           </div>
           <Textfield
+            required
             label="Name"
             style={{ width: "100%", marginBottom: "2%" }}
             variant="outlined"
@@ -92,6 +136,7 @@ class JobDetail extends Component {
             value={this.state.language}
           />
           <Textfield
+            required
             label="Email"
             style={{ width: "100%", marginBottom: "2%" }}
             variant="outlined"
@@ -99,6 +144,7 @@ class JobDetail extends Component {
             value={this.state.language}
           />
           <Textfield
+            required
             label="Cover Letter"
             style={{ width: "100%" }}
             variant="outlined"
@@ -133,10 +179,12 @@ class JobDetail extends Component {
         {this.state.preview && (
           <Paper
             style={{
-              position: "sticky",
-              // top: "40vh",
-              marginRight: "30%",
-              marginLeft: "30%",
+              position: "absolute",
+              top: "30vh",
+              left: "35%",
+              // marginRight: "30%",
+              // marginLeft: "30%",
+              minHeight: "25vh",
               height: "auto",
               padding: "5%",
             }}
@@ -186,7 +234,7 @@ class JobDetail extends Component {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                marginTop: "5%",
+                marginTop: "25%",
                 justifyContent: "space-evenly",
               }}
             >
@@ -194,7 +242,7 @@ class JobDetail extends Component {
             </div>
             <div align="center">
               <Button
-              onClick={this.handleDone}
+                onClick={this.handleDone}
                 style={{
                   background: "rgba(1,81,181,1)",
                   color: "#fff",
