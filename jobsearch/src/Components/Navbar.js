@@ -29,6 +29,7 @@ export default function ButtonAppBar() {
       localStorage.removeItem("session");
     }
     window.location.reload();
+    window.location.href="/"
   };
 
   return (

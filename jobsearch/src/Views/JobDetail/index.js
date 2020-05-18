@@ -83,12 +83,12 @@ class JobDetail extends Component {
           {this.state.job && (
             <Paper
               style={{
-                marginTop: "5%",
+                margin: "5%",
                 display: "flex",
                 flex: 1,
                 flexDirection: "column",
-                justifyContent: "space-between",
-                height: "80vh",
+                justifyContent: "space-evenly",
+                height: "auto",
                 padding: "5%",
               }}
             >
