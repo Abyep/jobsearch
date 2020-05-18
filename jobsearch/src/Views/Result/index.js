@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
+import Button from "@material-ui/core/Button";
+
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -21,23 +23,20 @@ class Result extends Component {
     return (
       <>
         <Navbar />
-        <div
-          style={{ marginRight: "10%", marginLeft: "10%", marginTop: "5%" }}
-        >
+        <div style={{ marginRight: "10%", marginLeft: "10%", marginTop: "5%" }}>
+          <div style={{ marginBottom: "3%", fontSize :"2.1em", fontWeight :"bold" }}>Job Results</div>
           <TableContainer component={Paper}>
             <Table aria-label="simple table">
-              <TableHead>
+              <TableHead style={{ background: "grey" }}>
                 <TableRow>
                   <TableCell>Id</TableCell>
-                  <TableCell align="right">Type</TableCell>
-                  <TableCell align="right">URL</TableCell>
-                  <TableCell align="right">Created at </TableCell>
-                  <TableCell align="right">Company</TableCell>
-                  <TableCell align="right">Location</TableCell>
-                  <TableCell align="right">Title</TableCell>
-                  {/* <TableCell align="right">Description</TableCell> */}
-                  <TableCell align="right">How to apply</TableCell>
-                  <TableCell align="right">Logo</TableCell>
+                  <TableCell align="center">Type</TableCell>
+                  <TableCell align="center">URL</TableCell>
+                  <TableCell align="center">Created at </TableCell>
+                  <TableCell align="center">Company</TableCell>
+                  <TableCell align="center">Location</TableCell>
+                  <TableCell align="center">Title</TableCell>
+                  <TableCell align="center">Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -46,15 +45,13 @@ class Result extends Component {
                     <TableCell component="th" scope="row">
                       {job.id}
                     </TableCell>
-                    <TableCell align="right">{job.type}</TableCell>
-                    <TableCell align="right">{job.url}</TableCell>
-                    <TableCell align="right">{job.created_at}</TableCell>
-                    <TableCell align="right">{job.company_url}</TableCell>
-                    <TableCell align="right">{job.location}</TableCell>
-                    <TableCell align="right">{job.title}</TableCell>
-                    {/* <TableCell align="right">{job.description}</TableCell> */}
-                    <TableCell align="right">{job.how_to_apply}</TableCell>
-                    <TableCell align="right">{job.componay_logo}</TableCell>
+                    <TableCell align="center">{job.type}</TableCell>
+                    <TableCell align="center">{job.url}</TableCell>
+                    <TableCell align="center">{job.created_at}</TableCell>
+                    <TableCell align="center">{job.company_url}</TableCell>
+                    <TableCell align="center">{job.location}</TableCell>
+                    <TableCell align="center">{job.title}</TableCell>
+                    <TableCell align="center"><Button style={{ color: "#fff", background : "rgba(1,81,181,1)"}}>Details</Button></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
