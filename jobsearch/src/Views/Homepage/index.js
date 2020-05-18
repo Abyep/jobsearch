@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Navbar from "../../Components/Navbar";
 import JobInput from "../JobInputDIalog";
@@ -8,7 +9,27 @@ class Homepage extends Component {
     super(props);
     this.state = {
       open: true,
+      jobs: [],
     };
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.jobs.length !== 0) {
+      // return (
+      //   <Redirect
+      //     to={{
+      //       pathname: `/results`,
+      //       state: {
+      //         jobs: this.props.jobs,
+      //       },
+      //     }}
+      //   />
+      // );
+
+      this.setState({
+        jobs: props.jobs,
+      });
+    }
   }
 
   handleClose = () => {
@@ -18,12 +39,25 @@ class Homepage extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <Navbar />
-        <JobInput close={this.handleClose} open={this.state.open} />
-      </div>
-    );
+    if (this.state.jobs.length !== 0) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/results`,
+            state: {
+              jobs: this.props.jobs,
+            },
+          }}
+        />
+      );
+    } else {
+      return (
+        <div>
+          <Navbar />
+          <JobInput close={this.handleClose} open={this.state.open} />
+        </div>
+      );
+    }
   }
 }
 

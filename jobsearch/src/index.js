@@ -13,6 +13,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const Homepage = lazy(() => import("./Views/Homepage"));
+const Result = lazy(() => import("./Views/Result"));
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Suspense fallback={<div></div>}>
         <Switch>
           <Route path="/" exact component={Homepage} />
+          <Route path="/results"  component={Result} />
 
           <Route path="*" component={Homepage} />
         </Switch>
